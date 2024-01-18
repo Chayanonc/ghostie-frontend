@@ -7,11 +7,33 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./src/modules/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {},
   },
   darkMode: "class",
-  plugins: [nextui()],
+  plugins: [
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            background: "#FFFFFF",
+            foreground: "#1B1926", //font color
+            default: "#0B154B",
+            primary: {
+              foreground: "#98989D",
+              DEFAULT: "#A15E92",
+            },
+            secondary: {
+              foreground: "#3A3848",
+              DEFAULT: "#BB8432",
+            },
+            divider: "#E9E9E9",
+          },
+        },
+      },
+    }),
+  ],
 };
 export default config;
