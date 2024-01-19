@@ -12,6 +12,7 @@ const config: Config = {
     extend: {
       backgroundImage: {
         header: "url('/lmages/bg-header.png')",
+        borrow: "url('/lmages/bg-borrow.png')"
       },
     },
   },

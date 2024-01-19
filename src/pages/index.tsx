@@ -1,4 +1,6 @@
-import Ticket from "@/components/Ticket";
+
+// import Ticket from "@/components/Ticket";
+import Borrow from "@/components/borrow";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 
@@ -11,7 +13,8 @@ export default function Home() {
         <title>Ghostie | Home</title>
       </Head>
       <div>Index</div>
-      <Ticket />
+      {/* <Ticket /> */}
+      <Borrow />
     </main>
   );
 }
