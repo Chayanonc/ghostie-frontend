@@ -1,5 +1,5 @@
 import PaginationCustom from "@/components/Pagination/PaginationCustom";
-import { columns, rows } from "@/constants/mockup/table";
+import { IRows, columns, rows } from "@/constants/mockup/table";
 import {
   Table,
   TableBody,
@@ -7,47 +7,48 @@ import {
   TableColumn,
   TableHeader,
   TableRow,
+  useDisclosure,
 } from "@nextui-org/react";
-import React from "react";
+import React, { useState } from "react";
+import ModalHistory from "./ModalHistory";
 
 const TableHistory = () => {
   const rowsPerPage = 6;
   const [page, setPage] = React.useState(1);
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+  const [itemRow, setItemRow] = useState<IRows>();
 
-  const renderCell = React.useCallback(
-    (item: Record<string, any>, columnKey: string) => {
-      switch (columnKey) {
-        case "round":
-          return <h6 className="text-sm font-normal">{item.round}</h6>;
-        case "Time_end":
-          return <h6 className="text-sm font-normal">{item.Time_end}</h6>;
-        case "Ticket_Amount":
-          return <h6 className="text-sm font-normal">{item.Ticket_Amount}</h6>;
-        case "Prize_pot":
-          return <h6 className="text-sm font-normal">{item.Prize_pot}</h6>;
-        case "Your_Tickets":
-          return <h6 className="text-sm font-normal">{item.Your_Tickets}</h6>;
-        case "Winning_Number":
-          return (
-            <div className="flex gap-3 text-center">
-              {Array.from(item.Winning_Number).map(
-                (value: any, index: number) => (
-                  <h6
-                    key={index}
-                    className="text-sm font-semibold border-2 w-6 h-6 border-primary border-opacity-50 rounded-full"
-                  >
-                    {value}
-                  </h6>
-                )
-              )}
-            </div>
-          );
-        default:
-          break;
-      }
-    },
-    []
-  );
+  const renderCell = React.useCallback((item: IRows, columnKey: string) => {
+    switch (columnKey) {
+      case "round":
+        return <h6 className="text-sm font-normal">{item.round}</h6>;
+      case "Time_end":
+        return <h6 className="text-sm font-normal">{item.Time_end}</h6>;
+      case "Ticket_Amount":
+        return <h6 className="text-sm font-normal">{item.Ticket_Amount}</h6>;
+      case "Prize_pot":
+        return <h6 className="text-sm font-normal">{item.Prize_pot}</h6>;
+      case "Your_Tickets":
+        return <h6 className="text-sm font-normal">{item.Your_Tickets}</h6>;
+      case "Winning_Number":
+        return (
+          <div className="flex gap-3 text-center">
+            {Array.from(item.Winning_Number).map(
+              (value: any, index: number) => (
+                <h6
+                  key={index}
+                  className="text-sm font-semibold border-2 w-6 h-6 border-primary border-opacity-50 rounded-full"
+                >
+                  {value}
+                </h6>
+              )
+            )}
+          </div>
+        );
+      default:
+        break;
+    }
+  }, []);
   const pages = Math.ceil(rows.length / rowsPerPage);
   const items = React.useMemo(() => {
     const start = (page - 1) * rowsPerPage;
@@ -71,7 +72,7 @@ const TableHistory = () => {
   }, [items.length, page, pages]);
   const classNames = React.useMemo(
     () => ({
-      wrapper: ["w-full", "shadow-none", "px-0"],
+      wrapper: ["w-full", "shadow-none", "px-0", "h-[480px]"],
       th: [
         "bg-primary",
         "bg-opacity-30",
@@ -91,30 +92,56 @@ const TableHistory = () => {
         "border-divider",
         "py-5",
         "px-8",
+        ,
       ],
+      tr: ["hover:bg-primary", "hover:bg-opacity-10"],
     }),
     []
   );
   return (
-    <Table
-      aria-label="Example table with dynamic content"
-      classNames={classNames}
-      bottomContent={bottomContent}
-      bottomContentPlacement="outside"
-    >
-      <TableHeader columns={columns}>
-        {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
-      </TableHeader>
-      <TableBody emptyContent={"No users found"} items={items}>
-        {(item) => (
-          <TableRow key={item.round}>
-            {(columnKey: any) => (
-              <TableCell>{renderCell(item, columnKey)}</TableCell>
-            )}
-          </TableRow>
-        )}
-      </TableBody>
-    </Table>
+    <>
+      <Table
+        aria-label="Example table with dynamic content"
+        classNames={classNames}
+        bottomContent={bottomContent}
+        bottomContentPlacement="outside"
+      >
+        <TableHeader columns={columns}>
+          {(column) => (
+            <TableColumn key={column.key}>{column.label}</TableColumn>
+          )}
+        </TableHeader>
+        <TableBody
+          emptyContent={"No users found"}
+          items={items}
+          className="h-[1000px]"
+        >
+          {(item) => (
+            <TableRow
+              key={item.round}
+              onClick={() => {
+                if (item) {
+                  setItemRow(item);
+                }
+                onOpen();
+              }}
+            >
+              {(columnKey: any) => (
+                <TableCell>{renderCell(item, columnKey)}</TableCell>
+              )}
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+      <ModalHistory
+        round={itemRow?.round || ""}
+        time={itemRow?.Time_end || ""}
+        winNumber={itemRow?.Winning_Number || ""}
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        onClose={onClose}
+      />
+    </>
   );
 };
 

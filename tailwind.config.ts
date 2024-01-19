@@ -10,7 +10,11 @@ const config: Config = {
     "./src/modules/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      // colors: {
+      //   gradientBlue: "linear-gradient(255deg, #3747A6 13.69%, #A15E92 99.34%)",
+      // },
+    },
   },
   darkMode: "class",
   plugins: [
