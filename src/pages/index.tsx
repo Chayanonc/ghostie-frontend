@@ -1,3 +1,4 @@
+import Ticket from "@/components/Ticket";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 
@@ -10,6 +11,7 @@ export default function Home() {
         <title>Ghostie | Home</title>
       </Head>
       <div>Index</div>
+      <Ticket />
     </main>
   );
 }
