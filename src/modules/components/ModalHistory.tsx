@@ -10,6 +10,7 @@ import Image from "next/image";
 import React from "react";
 import TableSummarize from "./TableSummarize";
 import TicketIcon from "@/components/Icon/TicketIcon";
+import { Quicksand } from "next/font/google";
 type ModalHistoryTypes = {
   round: string;
   winNumber: string;
@@ -18,7 +19,7 @@ type ModalHistoryTypes = {
   onOpenChange: () => void;
   onClose: () => void;
 };
-
+const quicksand = Quicksand({ subsets: ["latin"] });
 const ModalHistory = ({
   round,
   winNumber,
@@ -33,6 +34,7 @@ const ModalHistory = ({
       onOpenChange={onOpenChange}
       size="5xl"
       hideCloseButton
+      className={`${quicksand.className}`}
     >
       <ModalContent>
         {(onClose) => (
@@ -44,7 +46,7 @@ const ModalHistory = ({
                 </h2>
                 <div className="flex justify-between mt-1">
                   <h4 className="text-base font-medium py-2">
-                    Time end :{" "}
+                    Time end :
                     <span className="font-light text-primary-foreground ml-1">
                       {time}
                     </span>
@@ -61,9 +63,7 @@ const ModalHistory = ({
             <ModalBody>
               <div className="py-6 bg-primary bg-opacity-25 rounded-[20px] flex flex-col items-center justify-center ">
                 <div className="relative bg-[#1E1E1E]  rounded-full px-3.5 py-1   my-5">
-                  <h6 className="text-white font-light text-base">
-                    Winning Number
-                  </h6>
+                  <h6 className="text-white text-base">Winning Number</h6>
                   <Image
                     src="/Images/crown.png"
                     alt="img-crown"
@@ -84,10 +84,16 @@ const ModalHistory = ({
                 </div>
               </div>
               <div className="flex justify-between pb-0 my-2">
-                <h6 className="text-sm font-light">
+                <h6 className="text-sm ">
                   Prize pot :
-                  <span className="text-base font-medium text-primary">
+                  <span className="text-base font-medium text-primary ml-1">
                     $ 19,725.60{" "}
+                  </span>
+                </h6>
+                <h6 className="text-sm ">
+                  Total players :
+                  <span className="text-base font-medium text-primary ml-1">
+                    230
                   </span>
                 </h6>
                 <h6 className="text-base font-medium ">

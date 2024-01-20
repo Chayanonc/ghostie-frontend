@@ -102,12 +102,12 @@ const columns = [
 
 const columnsSummarize = [
   {
-    key: "totalPlayers",
-    label: "Total players",
+    key: "",
+    label: "",
   },
   {
     key: "match_all",
-    label: "Match all",
+    label: "Match All",
   },
   {
     key: "match5",
