@@ -12,7 +12,6 @@ export default function Home() {
       <Head>
         <title>Ghostie | Home</title>
       </Head>
-      <div>Index</div>
       <Header/>
       <div>
         <TableContent />
