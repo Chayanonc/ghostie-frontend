@@ -11,10 +11,6 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        header: "url('/lmages/bg-header.png')",
-        borrow: "url('/lmages/bg-borrow.png')"
-      },
       // colors: {
       //   gradientBlue: "linear-gradient(255deg, #3747A6 13.69%, #A15E92 99.34%)",
       // },

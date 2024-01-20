@@ -1,12 +1,8 @@
-import {
-  Card,
-  Image,
-  CardBody,
-  Chip,
-} from "@nextui-org/react";
+import { Card, Image, CardBody, Chip } from "@nextui-org/react";
 import TicketIcon from "../Icon/TicketIcon";
 import { Match } from "@/constants/mockup/table";
-import MatchCard from "../Crad/MatchCard";
+import MatchCard from "../Card/MatchCard";
+import NumberIcon from "../Icon/NumberIcon";
 
 type RoundTypes = {
   round: string;
@@ -50,12 +46,9 @@ const Round = ({ round, prizePot, numberWining, match }: RoundTypes) => {
 
         <div className="flex gap-5 justify-center items-center">
           {Array.from(numberWining).map((value: any, index: number) => (
-            <h6
-              key={index}
-              className="text-2xl font-semibold border-2 w-11 h-11 border-primary border-opacity-50 rounded-full text-center flex items-center justify-center bg-white"
-            >
-              {value}
-            </h6>
+            <>
+              <NumberIcon number={value} />
+            </>
           ))}
         </div>
         <div className="flex gap-2 mt-4">
