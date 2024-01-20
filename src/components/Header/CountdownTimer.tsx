@@ -27,7 +27,7 @@ const CountdownTimer = () => {
     return (
       <div>
         <div
-          className="text-center font-bold py-3 px-8 mt-6  border-3 max-w-[35.00rem] border-slate-200  border-solid rounded-3xl"
+          className="text-center font-bold py-3 px-8 border-3 max-w-[35.00rem] h-[227px] border-slate-200  border-solid rounded-3xl"
           style={{
             backgroundImage:
               "linear-gradient(111deg, rgba(255, 255, 255, 0.40) -8.95%, rgba(255, 255, 255, 0.01) 114%)",
@@ -38,7 +38,7 @@ const CountdownTimer = () => {
             next round #1144 now!
           </div>
 
-          <div className="flex justify-between items-center my-7">
+          <div className="flex justify-between items-center my-5">
             <div
               className="flex px-5 py-11 justify-center items-center bg-white  w-[80px] h-[80px]"
               style={{
@@ -96,18 +96,12 @@ const CountdownTimer = () => {
             </div>
           </div>
 
-          <div className="text-white text-sm font-light mb-2">
+          <div className="text-white text-sm font-light mb-2 pt-3">
             #1143 | Next round : Jan 15, 2024, 7:00 PM
           </div>
         </div>
       </div>
     );
-
-    // return `${days} days, ${hours.toString().padStart(2, "0")} hours, ${minutes
-    //   .toString()
-    //   .padStart(2, "0")} minutes, ${seconds
-    //   .toString()
-    //   .padStart(2, "0")} seconds`;
   };
 
   return timeRemaining ? <div>{formatTime(timeRemaining)}</div> : <div></div>;
