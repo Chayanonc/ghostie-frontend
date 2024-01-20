@@ -12,6 +12,7 @@ import {
 import React, { useState } from "react";
 import ModalHistory from "./ModalHistory";
 import ModalTicket3 from "./view/ModalTicket3";
+import ModalTicket2 from "./view/ModalTicket2";
 
 const TableHistory = () => {
   const rowsPerPage = 6;
@@ -23,7 +24,7 @@ const TableHistory = () => {
     switch (columnKey) {
       case "round":
         return <h6 className="text-sm font-normal">{item.round}</h6>;
-      case "Time_end":
+      case "Draw_prizes":
         return <h6 className="text-sm font-normal">{item.Time_end}</h6>;
       case "Ticket_Amount":
         return <h6 className="text-sm font-normal">{item.Ticket_Amount}</h6>;
@@ -141,7 +142,9 @@ const TableHistory = () => {
         onOpenChange={onOpenChange}
         onClose={onClose}
       /> */}
-      <ModalTicket3
+      <ModalTicket2
+        ticket="0539546"
+        date="Dec 05, 2023, 3:00 PM"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         onClose={onClose}

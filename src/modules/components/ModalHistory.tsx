@@ -46,7 +46,7 @@ const ModalHistory = ({
                 </h2>
                 <div className="flex justify-between mt-1">
                   <h4 className="text-base font-medium py-2">
-                    Time end :
+                    Draw prizes :
                     <span className="font-light text-primary-foreground ml-1">
                       {time}
                     </span>
