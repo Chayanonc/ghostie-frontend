@@ -1,5 +1,8 @@
+import dynamic from "next/dynamic";
 import React from "react";
-import TableHistory from "./components/TableHistory";
+const TableHistory = dynamic(() => import("./components/TableHistory"), {
+  ssr: false,
+});
 
 const TableContent = () => {
   return (

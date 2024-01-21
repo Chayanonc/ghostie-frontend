@@ -1,5 +1,5 @@
 import PaginationCustom from "@/components/Pagination/PaginationCustom";
-import { IRows, columns, rows } from "@/constants/mockup/table";
+import { columns } from "@/constants/mockup/table";
 import {
   Table,
   TableBody,
@@ -10,52 +10,77 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import React, { useState } from "react";
-import ModalTicket3 from "./view/ModalTicket3";
 import ModalHistory from "./ModalHistory";
+import { IHistory, useHistory } from "@/hook/history.hook";
+import { formatUnits } from "viem";
+import { formatDate } from "@/utils/formateDate";
 
 const TableHistory = () => {
   const rowsPerPage = 6;
   const [page, setPage] = React.useState(1);
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-  const [itemRow, setItemRow] = useState<IRows>();
+  const [itemRow, setItemRow] = useState<IHistory>();
+  const { history } = useHistory();
 
-  const renderCell = React.useCallback((item: IRows, columnKey: string) => {
+  const renderCell = React.useCallback((item: IHistory, columnKey: string) => {
     switch (columnKey) {
       case "round":
-        return <h6 className="text-sm font-normal">{item.round}</h6>;
-      case "Draw_prizes":
-        return <h6 className="text-sm font-normal">{item.Time_end}</h6>;
-      case "Ticket_Amount":
-        return <h6 className="text-sm font-normal">{item.Ticket_Amount}</h6>;
-      case "Prize_pot":
-        return <h6 className="text-sm font-normal">{item.Prize_pot}</h6>;
-      case "Your_Tickets":
-        return <h6 className="text-sm font-normal">{item.Your_Tickets}</h6>;
-      case "Winning_Number":
         return (
+          <h6 className="text-sm font-normal">{formatUnits(item.round, 0)}</h6>
+        );
+      case "drawDate":
+        return (
+          <h6 className="text-sm font-normal">
+            {formatDate(Number(formatUnits(item.drawDate, 0)) * 1000)}
+          </h6>
+        );
+      case "ticketAmount":
+        return (
+          <h6 className="text-sm font-normal">
+            {Number(item.ticketAmount) / 10 ** 18}
+          </h6>
+        );
+      case "prizePot":
+        return (
+          <h6 className="text-sm font-normal">
+            {formatUnits(item.prizePot, 0) !== "0"
+              ? formatUnits(item.prizePot, 0)
+              : `${1392.56 * Number(item.round)}`}
+          </h6>
+        );
+      case "totalYourTicket":
+        return (
+          <h6 className="text-sm font-normal">
+            {formatUnits(item.totalYourTicket, 0)}
+          </h6>
+        );
+      case "winningNumber":
+        return item.winningNumber ? (
           <div className="flex gap-3 text-center">
-            {Array.from(item.Winning_Number).map(
-              (value: any, index: number) => (
-                <h6
-                  key={index}
-                  className="text-sm font-semibold border-2 w-6 h-6 border-primary border-opacity-50 rounded-full"
-                >
-                  {value}
-                </h6>
-              )
-            )}
+            {Array.from(item.winningNumber).map((value: any, index: number) => (
+              <h6
+                key={index}
+                className="text-sm font-semibold border-2 w-6 h-6 border-primary border-opacity-50 rounded-full"
+              >
+                {value}
+              </h6>
+            ))}
           </div>
+        ) : (
+          <h6 className="text-sm font-semibold text-primary">
+            Waiting for the prize draw...
+          </h6>
         );
       default:
         break;
     }
   }, []);
-  const pages = Math.ceil(rows.length / rowsPerPage);
+  const pages = Math.ceil(history.length / rowsPerPage);
   const items = React.useMemo(() => {
     const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
 
-    return rows.slice(start, end);
+    return history.slice(start, end);
   }, [page, rowsPerPage]);
 
   const bottomContent = React.useMemo(() => {
@@ -98,6 +123,7 @@ const TableHistory = () => {
     }),
     []
   );
+
   return (
     <>
       <Table
@@ -113,12 +139,12 @@ const TableHistory = () => {
         </TableHeader>
         <TableBody
           emptyContent={"No users found"}
-          items={items}
+          items={history.sort((a, b) => Number(b.round) - Number(a.round))}
           className="h-[1000px]"
         >
           {(item) => (
             <TableRow
-              key={item.round}
+              key={item?.round}
               onClick={() => {
                 if (item) {
                   setItemRow(item);
@@ -134,9 +160,24 @@ const TableHistory = () => {
         </TableBody>
       </Table>
       <ModalHistory
-        round={itemRow?.round || ""}
-        time={itemRow?.Time_end || ""}
-        winNumber={itemRow?.Winning_Number ? itemRow?.Winning_Number : "xxxxxx"}
+        round={itemRow?.round ? formatUnits(itemRow?.round, 0) : ""}
+        time={
+          itemRow?.drawDate
+            ? formatDate(Number(formatUnits(itemRow.drawDate, 0)) * 1000)
+            : ""
+        }
+        match3={itemRow?.match3d ? itemRow.match3d.length : 0}
+        match4={itemRow?.match4d ? itemRow.match4d.length : 0}
+        match5={itemRow?.match5d ? itemRow.match5d.length : 0}
+        matchAll={itemRow?.matchAll ? itemRow.matchAll.length : 0}
+        ticketAmount={
+          itemRow?.ticketAmount ? formatUnits(itemRow.ticketAmount, 0) : "0"
+        }
+        prizePot={itemRow?.prizePot ? formatUnits(itemRow?.prizePot, 0) : "0"}
+        winNumber={itemRow?.winningNumber ? itemRow?.winningNumber : "xxxxxx"}
+        totalPlayers={
+          itemRow?.totalPlayer ? formatUnits(itemRow?.totalPlayer, 0) : ""
+        }
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         onClose={onClose}
