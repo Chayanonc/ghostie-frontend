@@ -3,6 +3,7 @@ import { OtpInput } from "./OTPInput";
 import DeleteIcon from "../Icon/DeleteIcon";
 import { Input } from "@nextui-org/react";
 import AddIcon from "../Icon/AddIcon";
+import { generateRandomSixDigitNumber } from "@/utils/randomNumber";
 
 type Props = {};
 
@@ -27,6 +28,33 @@ const NumberListInput = ({}: Props) => {
       setOtp("");
     }
   };
+
+  const generateRandom = (index: number) => {
+    const update = `${generateRandomSixDigitNumber()}`;
+    // update.split(index);
+    return update;
+  };
+
+  const splitDigits = (number: any) => {
+    return number.toString().split('').map(Number);
+  };
+
+  const handleRadom = () => {
+    const newRandomNumbers = enteredNumbers.map(
+      (item: any, index: any) => (item = generateRandom(index))
+    );
+    setEnteredNumbers([newRandomNumbers]);
+
+    // const update =  generateRandomSixDigitNumber();
+    // console.log(update)
+    // setEnteredNumbers([...enteredNumbers, update]);
+
+    // const updatedNumber = [...enteredNumbers, otp];
+    // updatedNumber.splice(index);
+    // setEnteredNumbers(updatedNumber);
+    // setOtp("");
+  };
+
   return (
     <div>
       <p
@@ -40,7 +68,7 @@ const NumberListInput = ({}: Props) => {
           <li key={index}>
             <div className="flex justify-between items-center mb-3">
               <div className="flex gap-2">
-                {Array.from(number).map((value: any, index: number) => (
+                {splitDigits(number).map((value: any, index: number) => (
                   <Input
                     key={index}
                     value={value}
@@ -83,6 +111,14 @@ const NumberListInput = ({}: Props) => {
         </div>
         <div>Add Number</div>
       </div>
+
+      <button onClick={handleRadom}>Generate Random Numbers</button>
+
+      {/* <ul>
+        {randomNumbers.map((number, index) => (
+          <li key={index}>{number}</li>
+        ))}
+      </ul> */}
     </div>
   );
 };
