@@ -14,7 +14,7 @@ type RoundTypes = {
 const Round = ({ round, prizePot, numberWining, match }: RoundTypes) => {
   return (
     <Card className="border-none bg-[#a15e923a] w-1/2">
-      <CardBody>
+      <CardBody className="py-0">
         <div className="relative flex justify-between items-center p-3 col-span-6 md:col-span-4">
           <div className="flex justify-start">
             <h3 className="font-semibold text-foreground/90">Round</h3>
@@ -29,7 +29,7 @@ const Round = ({ round, prizePot, numberWining, match }: RoundTypes) => {
               width={157}
               height="100%"
             />
-            <p className="flex justify-center">
+            <p className="flex justify-center mt-1">
               <span className="text-[#000000] text-sm">Prize pot :</span>
               <span className="font-semibold text-[#A15E92] text-sm ml-2">
                 $ {prizePot}
@@ -44,15 +44,15 @@ const Round = ({ round, prizePot, numberWining, match }: RoundTypes) => {
           </div>
         </div>
 
-        <div className="flex gap-5 justify-center items-center">
+        <div className="flex gap-5 justify-center items-center my-6">
           {Array.from(numberWining).map((value: any, index: number) => (
             <>
               <NumberIcon key={index} number={value} />
             </>
           ))}
         </div>
-        <div className="flex gap-2 mt-4">
-          {Match.map((item ,index) => (
+        <div className="flex gap-2 mt-2 justify-center">
+          {Match.map((item, index) => (
             // eslint-disable-next-line react/jsx-key
             <MatchCard key={index} title={item.label} detail={item.total} />
           ))}
