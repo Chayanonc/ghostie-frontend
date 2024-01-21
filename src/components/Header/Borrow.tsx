@@ -1,8 +1,19 @@
 import React from "react";
-import { Button, Card, CardHeader, Image } from "@nextui-org/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Image,
+  useDisclosure,
+} from "@nextui-org/react";
+import ModalBorrow from "../Modal/ModalBorrow";
 import { ConnectKitButton } from "connectkit";
 
 const Borrow = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Card className="col-span-12 sm:col-span-4 h-full w-1/2">
       <CardHeader className="absolute z-10 top-1 flex-col !items-start p-10">
@@ -24,17 +35,39 @@ const Borrow = () => {
         </p>
         <p className="text-[#FFC64F] font-extrabold mb-5 mt-5">APY 5.0 %</p>
 
+        <ModalBorrow
+          isOpen={isOpen}
+          onOpen={onOpen}
+          onClose={onClose}
+        ></ModalBorrow>
+
         <ConnectKitButton.Custom>
           {({ isConnected }) => {
             return (
               <div>
-                  <Button
-                    isDisabled={!isConnected}
-                    className="bg-black text-white w-[199px] h-[56px] shadow"
-                    size="lg"
-                  >
-                    Borrow now !
-                  </Button>
+                {isConnected ? (
+                  <>
+                    {" "}
+                    <Button
+                      onClick={onOpen}
+                      className="bg-black text-white w-[199px] h-[56px] shadow"
+                      size="lg"
+                    >
+                      Borrow now !
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <Button
+                      isDisabled
+                      className="bg-black text-white w-[199px] h-[56px] shadow"
+                      size="lg"
+                    >
+                      Borrow now !
+                    </Button>
+                  </>
+                )}
               </div>
             );
           }}

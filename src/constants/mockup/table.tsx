@@ -79,23 +79,23 @@ const columns = [
     label: "Round",
   },
   {
-    key: "Draw_prizes",
+    key: "drawDate",
     label: "Draw prizes",
   },
   {
-    key: "Ticket_Amount",
+    key: "ticketAmount",
     label: "Ticket Amount",
   },
   {
-    key: "Prize_pot",
+    key: "prizePot",
     label: "Prize Pot",
   },
   {
-    key: "Your_Tickets",
+    key: "totalYourTicket",
     label: "Your Tickets",
   },
   {
-    key: "Winning_Number",
+    key: "winningNumber",
     label: "Winning Number",
   },
 ];
@@ -126,20 +126,20 @@ const columnsSummarize = [
 const Match = [
   {
     label: "Match all",
-    total: "13,807.92 USDC"
+    total: "13,807.92 USDC",
   },
   {
     label: "Match 5 (15%)",
-    total: "2,958.84 USDC"
+    total: "2,958.84 USDC",
   },
   {
     label: "Match 4 (10%)",
-    total: "1,972.56 USDC"
+    total: "1,972.56 USDC",
   },
   {
     label: "Match 3 (5%)",
-    total: "986.28 USDC"
+    total: "986.28 USDC",
   },
 ];
 
-export { columns, rows, columnsSummarize, Match};
+export { columns, rows, columnsSummarize, Match };

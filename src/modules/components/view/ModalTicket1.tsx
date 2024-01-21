@@ -12,6 +12,10 @@ import {
 import { Quicksand } from "next/font/google";
 import React, { useState } from "react";
 import ModalTicket2 from "./ModalTicket2";
+import { useHistory, useTicketAll } from "@/hook/history.hook";
+import { useContractRead } from "wagmi";
+import { address } from "@/constants/address/contractAddress";
+import { abi } from "@/constants/abi/abi";
 type ModalTicket1Types = {
   round: string;
   isOpen: boolean;
@@ -47,6 +51,8 @@ const ModalTicket1 = ({
     onOpenChange: onOpenChangeTicket,
     onClose: onCloseTicket,
   } = useDisclosure();
+  const { ticketAll } = useTicketAll(Number(round));
+
   const [ticket, setTicket] = useState<Record<string, string>>({});
   const renderTicket = tickets.map((item) => (
     <div

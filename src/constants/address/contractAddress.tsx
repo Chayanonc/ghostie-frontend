@@ -1,3 +1,3 @@
 export const address = {
-  coreContractAddress: "0x55f3072e036be559b08400a67c5160514f524ef5",
+  coreContractAddress: "0xd124147d7bb3107ed3cbec40d8b7c421053be357",
 };
