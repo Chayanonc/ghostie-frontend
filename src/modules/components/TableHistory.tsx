@@ -10,7 +10,6 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import React, { useState } from "react";
-import ModalHistory from "./ModalHistory";
 import ModalTicket3 from "./view/ModalTicket3";
 
 const TableHistory = () => {
@@ -23,7 +22,7 @@ const TableHistory = () => {
     switch (columnKey) {
       case "round":
         return <h6 className="text-sm font-normal">{item.round}</h6>;
-      case "Time_end":
+      case "Draw_prizes":
         return <h6 className="text-sm font-normal">{item.Time_end}</h6>;
       case "Ticket_Amount":
         return <h6 className="text-sm font-normal">{item.Ticket_Amount}</h6>;
@@ -136,7 +135,7 @@ const TableHistory = () => {
       {/* <ModalHistory
         round={itemRow?.round || ""}
         time={itemRow?.Time_end || ""}
-        winNumber={itemRow?.Winning_Number || ""}
+        winNumber={itemRow?.Winning_Number ? itemRow?.Winning_Number : "xxxxxx"}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         onClose={onClose}

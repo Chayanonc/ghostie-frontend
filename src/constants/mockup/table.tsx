@@ -79,12 +79,12 @@ const columns = [
     label: "Round",
   },
   {
-    key: "Time_end",
-    label: "Time end",
+    key: "Draw_prizes",
+    label: "Draw prizes",
   },
   {
     key: "Ticket_Amount",
-    label: "Start Presale",
+    label: "Ticket Amount",
   },
   {
     key: "Prize_pot",
