@@ -7,7 +7,7 @@ import {
   CardHeader,
   Image,
 } from "@nextui-org/react";
-import ModalBuyTicket from "../Modal/ModalBuyTicket";
+import { ConnectKitButton } from "connectkit";
 
 const Borrow = () => {
   return (
@@ -31,14 +31,36 @@ const Borrow = () => {
         </p>
         <p className="text-[#FFC64F] font-extrabold mb-5 mt-5">APY 5.0 %</p>
 
-        {/* <Button
-          isDisabled
-          className="bg-black text-white w-[199px] h-[56px] shadow"
-          size="lg"
-        >
-          Borrow now !
-        </Button> */}
-        <ModalBuyTicket />
+        <ConnectKitButton.Custom>
+          {({ isConnected }) => {
+            return (
+              <div>
+                {isConnected ? (
+                  <>
+                    {" "}
+                    <Button
+                      className="bg-black text-white w-[199px] h-[56px] shadow"
+                      size="lg"
+                    >
+                      Borrow now !
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <Button
+                      isDisabled
+                      className="bg-black text-white w-[199px] h-[56px] shadow"
+                      size="lg"
+                    >
+                      Borrow now !
+                    </Button>
+                  </>
+                )}
+              </div>
+            );
+          }}
+        </ConnectKitButton.Custom>
       </CardHeader>
       <Image
         removeWrapper

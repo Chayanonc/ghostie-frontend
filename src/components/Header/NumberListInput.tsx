@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { OtpInput } from "./OTPInput";
+import { OTPInput } from "./OTPInput";
 import DeleteIcon from "../Icon/DeleteIcon";
-import { Input } from "@nextui-org/react";
+import { Button, Input, Image } from "@nextui-org/react";
 import AddIcon from "../Icon/AddIcon";
 import { generateRandomSixDigitNumber } from "@/utils/randomNumber";
 
@@ -22,7 +22,7 @@ const NumberListInput = ({}: Props) => {
     setOtp("");
   };
 
-  const handleVerify = () => {
+  const handleAddNumber = () => {
     if (otp.length === 6) {
       setEnteredNumbers([...enteredNumbers, otp]);
       setOtp("");
@@ -49,18 +49,6 @@ const NumberListInput = ({}: Props) => {
       });
       setEnteredNumbers(newRandomNumbers);
     }
-
-    // setEnteredNumbers([newRandomNumbers]);
-    // setEnteredNumbers(["012356", "945665"]);
-
-    // const update =  generateRandomSixDigitNumber();
-    // console.log(update)
-    // setEnteredNumbers([...enteredNumbers, update]);
-
-    // const updatedNumber = [...enteredNumbers, otp];
-    // updatedNumber.splice(index);
-    // setEnteredNumbers(updatedNumber);
-    // setOtp("");
   };
 
   return (
@@ -94,7 +82,7 @@ const NumberListInput = ({}: Props) => {
         ))}
       </ul>
 
-      <OtpInput
+      <OTPInput
         value={otp}
         numInputs={6}
         onChange={setOtp}
@@ -111,8 +99,8 @@ const NumberListInput = ({}: Props) => {
       />
 
       <div
-        onClick={handleVerify}
-        className="flex item-center text-sm py-4 text-[#3A3848]"
+        onClick={handleAddNumber}
+        className="flex item-center text-sm py-4 text-[#3A3848] mb-12"
       >
         <div>
           <AddIcon />
@@ -120,13 +108,19 @@ const NumberListInput = ({}: Props) => {
         <div>Add Number</div>
       </div>
 
-      <button onClick={handleRadom}>Generate Random Numbers</button>
-
-      {/* <ul>
-        {randomNumbers.map((number, index) => (
-          <li key={index}>{number}</li>
-        ))}
-      </ul> */}
+      <Button
+        onClick={handleRadom}
+        className="w-full border-[#1E1E1E] border-1 bg-white"
+      >
+        <Image
+          alt="Icon Number"
+          className=" w-full h-full object-cover"
+          src="/Svg/Random.svg"
+          width={49}
+          height="100%"
+        />
+        Random All
+      </Button>
     </div>
   );
 };

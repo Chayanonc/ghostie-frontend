@@ -10,6 +10,7 @@ import {
   Image,
 } from "@nextui-org/react";
 import NumberListInput from "../Header/NumberListInput";
+import { ConnectKitButton } from "connectkit";
 
 const ModalBuyTicket = ({}) => {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
@@ -27,14 +28,38 @@ const ModalBuyTicket = ({}) => {
 
   return (
     <>
-      <Button
-        key={size}
-        onPress={() => handleOpen(size)}
-        className="bg-black text-white w-[199px] h-[56px] shadow"
-        size="lg"
-      >
-        Borrow now !
-      </Button>
+      <ConnectKitButton.Custom>
+        {({ isConnected, show }) => {
+          return (
+            <div>
+              {isConnected ? (
+                <>
+                  {" "}
+                  <Button
+                    key={size}
+                    onPress={() => handleOpen(size)}
+                    className="bg-[#FFC64F] text-black font-semibold w-[199px] h-[56px] shadow-sm"
+                    size="lg"
+                  >
+                    Buy Ticket Now!!
+                  </Button>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <Button
+                    onClick={show}
+                    className="bg-black text-white w-[199px] h-[56px] shadow"
+                    size="lg"
+                  >
+                    Connect Wallet
+                  </Button>
+                </>
+              )}
+            </div>
+          );
+        }}
+      </ConnectKitButton.Custom>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         {confirm ? (
           <>
@@ -74,29 +99,14 @@ const ModalBuyTicket = ({}) => {
                   </p>
                 </ModalHeader>
                 <ModalBody>
-                  {/* <AddNumberList /> */}
                   <NumberListInput />
+                  <Button
+                    className="w-full bg-[#1E1E1E] text-white mb-6"
+                    onPress={confirmTickets}
+                  >
+                    Buy
+                  </Button>
                 </ModalBody>
-                <ModalFooter>
-                  <div className="flex-row w-full">
-                    <Button className="w-full border-[#1E1E1E] border-1 bg-white">
-                      <Image
-                        alt="Icon Number"
-                        className=" w-full h-full object-cover"
-                        src="/Svg/Random.svg"
-                        width={49}
-                        height="100%"
-                      />
-                      Random All
-                    </Button>
-                    <Button
-                      className="w-full bg-[#1E1E1E] text-white mt-2"
-                      onPress={confirmTickets}
-                    >
-                      Buy
-                    </Button>
-                  </div>
-                </ModalFooter>
               </>
             )}
           </ModalContent>

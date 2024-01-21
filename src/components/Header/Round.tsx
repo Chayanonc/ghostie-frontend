@@ -47,14 +47,14 @@ const Round = ({ round, prizePot, numberWining, match }: RoundTypes) => {
         <div className="flex gap-5 justify-center items-center">
           {Array.from(numberWining).map((value: any, index: number) => (
             <>
-              <NumberIcon number={value} />
+              <NumberIcon key={index} number={value} />
             </>
           ))}
         </div>
         <div className="flex gap-2 mt-4">
-          {Match.map((item) => (
+          {Match.map((item ,index) => (
             // eslint-disable-next-line react/jsx-key
-            <MatchCard title={item.label} detail={item.total} />
+            <MatchCard key={index} title={item.label} detail={item.total} />
           ))}
         </div>
       </CardBody>

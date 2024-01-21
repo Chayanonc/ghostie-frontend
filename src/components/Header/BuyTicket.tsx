@@ -1,11 +1,8 @@
 import React from "react";
-import {
-  Card,
-  CardHeader,
-  Image,
-} from "@nextui-org/react";
-import { ConnectKitButton } from "connectkit";
+import { Card, CardHeader, Image } from "@nextui-org/react";
+
 import CountdownTimer from "./CountdownTimer";
+import ModalBuyTicket from "../Modal/ModalBuyTicket";
 
 const BuyTicket = () => {
   return (
@@ -26,9 +23,8 @@ const BuyTicket = () => {
           <div className="text-white text-xl mb-2 mt-8">
             Connect your wallet to get tickets for the next round #1144 now!
           </div>
-
-          <ConnectKitButton />
-
+          <ModalBuyTicket />
+         
           <div className="text-white text-xl max-w-[25.00rem] mb-2 mt-2">
             1 Ticket = 10 USD
             <a className="text-[#DCCACE]">(~ 10.01 USDC)</a>
@@ -37,9 +33,7 @@ const BuyTicket = () => {
 
         <div className="flex justify-center items-center flex-col">
           <CountdownTimer />
-          <div
-            className="flex justify-center text-white text-sm  max-w-[25.00rem] mb-2 mt-1 underline"
-          >
+          <div className="flex justify-center text-white text-sm  max-w-[25.00rem] mb-2 mt-1 underline">
             How to play?
             <Image
               alt="messaged"

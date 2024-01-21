@@ -161,7 +161,7 @@ export type OtpInputHandle = {
 };
 
 // eslint-disable-next-line react/display-name
-const OtpInput = forwardRef<OtpInputHandle, IOtpInput>((props, ref) => {
+const OTPInput = forwardRef<OtpInputHandle, IOtpInput>((props, ref) => {
   const {
     numInputs = 4,
     onChange = (otp: string) => console.log(otp),
@@ -395,4 +395,4 @@ const OtpInput = forwardRef<OtpInputHandle, IOtpInput>((props, ref) => {
   );
 });
 
-export { OtpInput };
+export { OTPInput };
