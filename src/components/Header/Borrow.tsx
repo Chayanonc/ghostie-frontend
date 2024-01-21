@@ -7,6 +7,7 @@ import {
   CardHeader,
   Image,
 } from "@nextui-org/react";
+import ModalBuyTicket from "../Modal/ModalBuyTicket";
 
 const Borrow = () => {
   return (
@@ -30,12 +31,14 @@ const Borrow = () => {
         </p>
         <p className="text-[#FFC64F] font-extrabold mb-5 mt-5">APY 5.0 %</p>
 
-        <Button
+        {/* <Button
+          isDisabled
           className="bg-black text-white w-[199px] h-[56px] shadow"
           size="lg"
         >
           Borrow now !
-        </Button>
+        </Button> */}
+        <ModalBuyTicket />
       </CardHeader>
       <Image
         removeWrapper

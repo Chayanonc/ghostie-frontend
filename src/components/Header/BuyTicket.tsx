@@ -38,8 +38,7 @@ const BuyTicket = () => {
         <div className="flex justify-center items-center flex-col">
           <CountdownTimer />
           <div
-            className="flex justify-center text-white text-sm  max-w-[25.00rem] mb-2 mt-1"
-            style={{ textDecorationLine: "underline" }}
+            className="flex justify-center text-white text-sm  max-w-[25.00rem] mb-2 mt-1 underline"
           >
             How to play?
             <Image

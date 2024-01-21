@@ -24,7 +24,7 @@ const NumberIcon = ({ number }: NumberIconTypes) => {
             fontSize: '24px',
             color: 'white',
             fontWeight: 'bold',
-            zIndex: 100, //  // Ensure the number is in front of the image
+            zIndex: 50, //  // Ensure the number is in front of the image
           }}
       >
         {number}
