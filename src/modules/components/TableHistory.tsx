@@ -11,6 +11,7 @@ import {
 } from "@nextui-org/react";
 import React, { useState } from "react";
 import ModalHistory from "./ModalHistory";
+import ModalConfirm from "./ModalConfirm";
 
 const TableHistory = () => {
   const rowsPerPage = 6;
