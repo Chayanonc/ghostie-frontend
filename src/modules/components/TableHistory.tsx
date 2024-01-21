@@ -11,6 +11,7 @@ import {
 } from "@nextui-org/react";
 import React, { useState } from "react";
 import ModalTicket3 from "./view/ModalTicket3";
+import ModalHistory from "./ModalHistory";
 
 const TableHistory = () => {
   const rowsPerPage = 6;
@@ -132,15 +133,10 @@ const TableHistory = () => {
           )}
         </TableBody>
       </Table>
-      {/* <ModalHistory
+      <ModalHistory
         round={itemRow?.round || ""}
         time={itemRow?.Time_end || ""}
         winNumber={itemRow?.Winning_Number ? itemRow?.Winning_Number : "xxxxxx"}
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        onClose={onClose}
-      /> */}
-      <ModalTicket3
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         onClose={onClose}
