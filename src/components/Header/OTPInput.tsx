@@ -260,8 +260,7 @@ const OTPInput = forwardRef<OtpInputHandle, IOtpInput>((props, ref) => {
     }
 
     let nextActiveInput = activeInput;
-
-    // Get pastedData in an array of max size (num of inputs - current position)
+    
     const pastedData = e.clipboardData
       .getData("text/plain")
       .slice(0, numInputs - activeInput)
@@ -320,13 +319,11 @@ const OTPInput = forwardRef<OtpInputHandle, IOtpInput>((props, ref) => {
     }
   };
 
-  // The content may not have changed, but some input took place hence change the focus
   const handleOnInput = (e: any) => {
     if (isInputValueValid(e.target.value)) {
       focusNextInput();
       return;
     }
-    // This is a workaround for dealing with keyCode "229 Unidentified" on Android.
 
     if (!isInputNum) {
       const { nativeEvent } = e;

@@ -1,4 +1,4 @@
-import { abi } from "@/constants/abi/abi";
+import { GhostieAbi } from "@/constants/abi/GhostieAbi";
 import { address } from "@/constants/address/contractAddress";
 import { useMemo } from "react";
 import {
@@ -26,7 +26,7 @@ export interface IHistory {
 export const useHistory = () => {
   const { data, isLoading } = useContractRead({
     address: address.coreContractAddress as `0x${string}`,
-    abi: abi,
+    abi: GhostieAbi,
     functionName: "history",
     watch: true,
   }) as { data: IHistory[]; isLoading: boolean };
@@ -43,7 +43,7 @@ export const useHistory = () => {
 export const useTicketAll = (round: number) => {
   const { data, isLoading } = useContractRead({
     address: address.coreContractAddress as `0x${string}`,
-    abi: abi,
+    abi: GhostieAbi,
     functionName: "getAllTicketsPerRound",
     args: [1],
   });
@@ -60,7 +60,7 @@ export const useTicketAll = (round: number) => {
 export const useWithdraw = (ticketId: number, round: number) => {
   const { config } = usePrepareContractWrite({
     address: address.coreContractAddress as `0x${string}`,
-    abi: abi,
+    abi: GhostieAbi,
     functionName: "addProjectMember",
     args: [round, ticketId],
   });

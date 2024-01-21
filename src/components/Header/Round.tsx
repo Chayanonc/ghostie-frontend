@@ -60,7 +60,7 @@ const Round = ({ round, prizePot, winnerNumber }: RoundTypes) => {
           </div>
         </div>
 
-        <div className="flex gap-5 justify-center items-center my-6">
+        <div className="flex gap-5 justify-center items-center my-3">
           {Array.from(winnerNumber).map((value: any, index: number) => (
             <NumberIcon key={index} number={value} />
           ))}

@@ -1,30 +1,37 @@
 import React, { useState } from "react";
 import { OTPInput } from "./OTPInput";
 import DeleteIcon from "../Icon/DeleteIcon";
-import { Button, Input, Image } from "@nextui-org/react";
+import { Button, Input, Image, useDisclosure } from "@nextui-org/react";
 import AddIcon from "../Icon/AddIcon";
 import { generateRandomSixDigitNumber } from "@/utils/randomNumber";
 
-type Props = {};
+type Props = {
+  onArrayChange: any;
+};
 
-const NumberListInput = ({}: Props) => {
+const NumberListInput = ({ onArrayChange }: Props) => {
+  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
   const [otp, setOtp] = useState("");
+  const [enteredNumbers, setEnteredNumbers] = useState<Array<string>>([]);
+
   const clearOtp = () => {
     setOtp("");
     setEnteredNumbers([]);
+    onArrayChange([]);
   };
-  const [enteredNumbers, setEnteredNumbers] = useState<Array<string>>([]);
 
   const clearNumber = (index: number) => {
     const updatedNumber = [...enteredNumbers, otp];
     updatedNumber.splice(index);
     setEnteredNumbers(updatedNumber);
+    onArrayChange(updatedNumber);
     setOtp("");
   };
 
   const handleAddNumber = () => {
     if (otp.length === 6) {
       setEnteredNumbers([...enteredNumbers, otp]);
+      onArrayChange([...enteredNumbers, otp]);
       setOtp("");
     }
   };
@@ -43,11 +50,13 @@ const NumberListInput = ({}: Props) => {
     const gen = generateRandom();
     if (enteredNumbers.length == 0) {
       setEnteredNumbers([generateRandom()]);
+      onArrayChange([generateRandom()]);
     } else {
       const newRandomNumbers: Array<string> = enteredNumbers.map(() => {
         return generateRandom();
       });
       setEnteredNumbers(newRandomNumbers);
+      onArrayChange(newRandomNumbers);
     }
   };
 
@@ -82,21 +91,29 @@ const NumberListInput = ({}: Props) => {
         ))}
       </ul>
 
-      <OTPInput
-        value={otp}
-        numInputs={6}
-        onChange={setOtp}
-        separator={<span style={{ width: "8px" }}></span>}
-        inputStyle={{
-          border: "1px solid #A15E92",
-          borderRadius: "12px",
-          width: "55px",
-          height: "55px",
-          fontSize: "12px",
-          fontWeight: "400",
-          caretColor: "blue",
-        }}
-      />
+      <div className="flex">
+        <OTPInput
+          value={otp}
+          numInputs={6}
+          onChange={setOtp}
+          separator={<span style={{ width: "8px" }}></span>}
+          inputStyle={{
+            border: "1px solid #A15E92",
+            borderRadius: "12px",
+            width: "55px",
+            height: "55px",
+            fontSize: "12px",
+            fontWeight: "400",
+            caretColor: "blue",
+          }}
+        />
+        <div
+          className="flex justify-center items-center ml-2 "
+          onClick={handleAddNumber}
+        >
+          <AddIcon />
+        </div>
+      </div>
 
       <div
         onClick={handleAddNumber}
