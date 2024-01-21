@@ -17,6 +17,13 @@ type ModalHistoryTypes = {
   round: string;
   winNumber: string;
   time: string;
+  match3: number;
+  match4: number;
+  match5: number;
+  matchAll: number;
+  prizePot: string;
+  ticketAmount: string;
+  totalPlayers: string;
   isOpen: boolean;
   onOpenChange: () => void;
   onClose: () => void;
@@ -26,6 +33,13 @@ const ModalHistory = ({
   round,
   winNumber,
   time,
+  match3,
+  match4,
+  match5,
+  matchAll,
+  ticketAmount,
+  totalPlayers,
+  prizePot,
   isOpen,
   onOpenChange,
   onClose,
@@ -104,23 +118,29 @@ const ModalHistory = ({
                   <h6 className="text-sm ">
                     Prize pot :
                     <span className="text-base font-medium text-primary ml-1">
-                      $ 19,725.60{" "}
+                      $ {prizePot}
                     </span>
                   </h6>
                   <h6 className="text-sm ">
                     Total players :
                     <span className="text-base font-medium text-primary ml-1">
-                      230
+                      {totalPlayers}
                     </span>
                   </h6>
                   <h6 className="text-base font-medium ">
                     Ticket Amount :{" "}
                     <span className="text-sm font-medium text-primary">
-                      100,000
+                      {ticketAmount}
                     </span>
                   </h6>
                 </div>
-                <TableSummarize />
+                <TableSummarize
+                  match3={match3}
+                  match4={match4}
+                  match5={match5}
+                  matchAll={matchAll}
+                  prizePot={prizePot}
+                />
               </ModalBody>
               <ModalFooter className="pb-6 justify-center">
                 <Button

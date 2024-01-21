@@ -1,9 +1,11 @@
-// import Ticket from "@/components/Ticket";
 import Borrow from "@/components/Header/Borrow";
-import Header from "@/components/Header/Header";
-import { Inter } from "next/font/google";
+// import Header from "@/components/Header/Header";
 import TableContent from "@/modules";
+import dynamic from "next/dynamic";
 import Head from "next/head";
+const Header = dynamic(() => import("@/components/Header/Header"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (

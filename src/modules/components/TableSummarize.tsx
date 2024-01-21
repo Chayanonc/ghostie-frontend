@@ -11,8 +11,26 @@ import {
 } from "@nextui-org/react";
 import React, { useState } from "react";
 import ModalHistory from "./ModalHistory";
+import { formatDecimal, formatFiatNumber } from "@/utils/formatNumber";
+type TableSummarizeType = {
+  match3: number;
+  match4: number;
+  match5: number;
+  matchAll: number;
+  prizePot: string;
+};
+const TableSummarize = ({
+  match3,
+  match4,
+  match5,
+  matchAll,
+  prizePot,
+}: TableSummarizeType) => {
+  const matchAllM = Number(prizePot) * 0.7;
+  const match3M = Number(prizePot) * 0.05;
+  const match4M = Number(prizePot) * 0.1;
+  const match5M = Number(prizePot) * 0.15;
 
-const TableSummarize = () => {
   const classNames = React.useMemo(
     () => ({
       wrapper: ["w-full", "shadow-none", "px-0", "py-0"],
@@ -39,6 +57,7 @@ const TableSummarize = () => {
     }),
     []
   );
+
   return (
     <Table
       aria-label="Example table with dynamic content"
@@ -60,34 +79,34 @@ const TableSummarize = () => {
           </TableCell>
           <TableCell>
             <h5 className="text-base font-medium text-secondary-foreground">
-              13,807.92 USDC
+              {formatDecimal(matchAllM)} USDC
             </h5>
             <h5 className="text-sm  text-secondary-foreground mt-1">
-              = ~$13,80792
+              = ~{formatFiatNumber(matchAllM)}
             </h5>
           </TableCell>
           <TableCell>
             <h5 className="text-base font-medium text-secondary-foreground">
-              2,958.92 USDC
+              {formatDecimal(match5M)} USDC
             </h5>
             <h5 className="text-sm  text-secondary-foreground mt-1">
-              = ~$2,958.92
+              = ~{formatFiatNumber(match5M)}
             </h5>
           </TableCell>
           <TableCell>
             <h5 className="text-base font-medium text-secondary-foreground">
-              1,972.56 USDC
+              {formatDecimal(match4M)} USDC
             </h5>
             <h5 className="text-sm  text-secondary-foreground mt-1">
-              = ~$1,972.56
+              = ~{formatFiatNumber(match4M)}
             </h5>
           </TableCell>
           <TableCell>
             <h5 className="text-base font-medium text-secondary-foreground">
-              968.28 USDC
+              {formatDecimal(match3M)} USDC
             </h5>
             <h5 className="text-sm  text-secondary-foreground mt-1">
-              = ~$968.28
+              = ~{formatFiatNumber(match3M)}
             </h5>
           </TableCell>
         </TableRow>
@@ -98,16 +117,24 @@ const TableSummarize = () => {
             </h6>
           </TableCell>
           <TableCell>
-            <h6 className="text-sm  text-secondary-foreground">0 Winning</h6>
+            <h6 className="text-sm  text-secondary-foreground">
+              {matchAll} Winning
+            </h6>
           </TableCell>
           <TableCell>
-            <h6 className="text-sm  text-secondary-foreground">0 Winning</h6>
+            <h6 className="text-sm  text-secondary-foreground">
+              {match5} Winning
+            </h6>
           </TableCell>
           <TableCell>
-            <h6 className="text-sm  text-secondary-foreground">0 Winning</h6>
+            <h6 className="text-sm  text-secondary-foreground">
+              {match4} Winning
+            </h6>
           </TableCell>
           <TableCell>
-            <h6 className="text-sm  text-secondary-foreground">3 Winning</h6>
+            <h6 className="text-sm  text-secondary-foreground">
+              {match3} Winning
+            </h6>
           </TableCell>
         </TableRow>
         <TableRow key="3">
@@ -117,16 +144,36 @@ const TableSummarize = () => {
             </h6>
           </TableCell>
           <TableCell>
-            <h6 className="text-sm  text-primary">0 USDC</h6>
+            <h6 className="text-sm  text-primary">
+              {formatDecimal(Number(matchAllM) / matchAll) === "NaN"
+                ? "0"
+                : formatDecimal(Number(matchAllM) / matchAll)}{" "}
+              USDC
+            </h6>
           </TableCell>
           <TableCell>
-            <h6 className="text-sm  text-primary">0 USDC</h6>
+            <h6 className="text-sm  text-primary">
+              {formatDecimal(Number(match5M) / match5) === "NaN"
+                ? "0"
+                : formatDecimal(Number(match5M) / match5)}{" "}
+              USDC
+            </h6>
           </TableCell>
           <TableCell>
-            <h6 className="text-sm  text-primary">657.52 USDC</h6>
+            <h6 className="text-sm  text-primary">
+              {formatDecimal(Number(match4M) / match4) === "NaN"
+                ? "0"
+                : formatDecimal(Number(match4M) / match4)}{" "}
+              USDC
+            </h6>
           </TableCell>
           <TableCell>
-            <h6 className="text-sm  text-primary">0 USDC</h6>
+            <h6 className="text-sm  text-primary">
+              {formatDecimal(Number(match3M) / match3) === "NaN"
+                ? "0"
+                : formatDecimal(Number(match3M) / match3)}
+              USDC
+            </h6>
           </TableCell>
         </TableRow>
       </TableBody>
