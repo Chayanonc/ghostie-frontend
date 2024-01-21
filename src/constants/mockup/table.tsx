@@ -123,4 +123,23 @@ const columnsSummarize = [
   },
 ];
 
-export { columns, rows, columnsSummarize };
+const Match = [
+  {
+    label: "Match all",
+    total: "13,807.92 USDC"
+  },
+  {
+    label: "Match 5 (15%)",
+    total: "2,958.84 USDC"
+  },
+  {
+    label: "Match 4 (10%)",
+    total: "1,972.56 USDC"
+  },
+  {
+    label: "Match 3 (5%)",
+    total: "986.28 USDC"
+  },
+];
+
+export { columns, rows, columnsSummarize, Match};

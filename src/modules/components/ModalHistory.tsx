@@ -12,7 +12,6 @@ import React from "react";
 import TableSummarize from "./TableSummarize";
 import TicketIcon from "@/components/Icon/TicketIcon";
 import { Quicksand } from "next/font/google";
-import ModalTicket3 from "./view/ModalTicket3";
 import ModalTicket1 from "./view/ModalTicket1";
 type ModalHistoryTypes = {
   round: string;
