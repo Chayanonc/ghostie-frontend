@@ -136,7 +136,7 @@ const TableHistory = () => {
       <ModalHistory
         round={itemRow?.round || ""}
         time={itemRow?.Time_end || ""}
-        winNumber={itemRow?.Winning_Number || ""}
+        winNumber={itemRow?.Winning_Number ? itemRow?.Winning_Number : "xxxxxx"}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         onClose={onClose}

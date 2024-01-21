@@ -87,12 +87,17 @@ const ModalHistory = ({
                   </div>
                   <div className="flex gap-5 items-center">
                     {Array.from(winNumber).map((value: any, index: number) => (
-                      <h6
-                        key={index}
-                        className="text-2xl font-semibold border-2 w-11 h-11 border-primary border-opacity-50 rounded-full text-center flex items-center justify-center bg-white"
-                      >
-                        {value}
-                      </h6>
+                      <div key={index}>
+                        <h6 className="absolute text-2xl font-semibold  w-11 h-11 text-white  text-center flex items-center justify-center ">
+                          {value}
+                        </h6>
+                        <Image
+                          src="/Images/ball.png"
+                          alt="image-ball"
+                          width={44}
+                          height={44}
+                        />
+                      </div>
                     ))}
                   </div>
                 </div>
