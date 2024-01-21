@@ -12,6 +12,7 @@ type RoundTypes = {
 };
 
 const Round = ({ round, prizePot, numberWining, match }: RoundTypes) => {
+
   return (
     <Card className="border-none bg-[#a15e923a] w-1/2">
       <CardBody className="py-0">
@@ -44,7 +45,7 @@ const Round = ({ round, prizePot, numberWining, match }: RoundTypes) => {
           </div>
         </div>
 
-        <div className="flex gap-5 justify-center items-center my-6">
+        <div className="flex gap-5 justify-center items-center mb-3">
           {Array.from(numberWining).map((value: any, index: number) => (
             <NumberIcon key={index} number={value} />
           ))}

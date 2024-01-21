@@ -1,20 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Modal,
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   Button,
-  useDisclosure,
-  Image,
 } from "@nextui-org/react";
 import NumberListInput from "../Header/NumberListInput";
 import { ConnectKitButton } from "connectkit";
+import ModalConfirm from "@/modules/components/ModalConfirm";
 
-const ModalBuyTicket = ({}) => {
-  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
+type ModalByTicketTypes = {
+  isOpen: boolean;
+  onOpenChange: () => void;
+  onCloseAddNumber: () => void;
+  onOpen: () => void;
+};
+
+const ModalBuyTicket = ({
+  isOpen,
+  onOpenChange,
+  onCloseAddNumber,
+  onOpen,
+}: ModalByTicketTypes) => {
   const [size, setSize] = React.useState("sm");
+  const [enteredNumbers, setEnteredNumbers] = useState<Array<string>>([]);
   const [confirm, setConfirm] = React.useState(false);
 
   const handleOpen = (size: any) => {
@@ -24,6 +34,9 @@ const ModalBuyTicket = ({}) => {
 
   const confirmTickets = () => {
     setConfirm(!confirm);
+  };
+  const handleInputChange = (newArray: []) => {
+    setEnteredNumbers(newArray);
   };
 
   return (
@@ -61,56 +74,25 @@ const ModalBuyTicket = ({}) => {
         }}
       </ConnectKitButton.Custom>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-        {confirm ? (
-          <>
-            <ModalContent>
-              {(onClose) => (
-                <>
-                  <ModalHeader className="flex flex-col gap-1">
-                    <p className="text-xl">Confirm Ticket</p>
-                  </ModalHeader>
-                  <ModalBody></ModalBody>
-                  <ModalFooter>
-                    <Button
-                      className="w-full border-[#1E1E1E] border-1 bg-white "
-                      onPress={confirmTickets}
-                    >
-                      Cancel
-                    </Button>
-                    <Button
-                      className="w-full bg-[#1E1E1E] text-white"
-                      onPress={onClose}
-                    >
-                      Confirm
-                    </Button>
-                  </ModalFooter>
-                </>
-              )}
-            </ModalContent>
-          </>
-        ) : (
-          <ModalContent>
-            {(onClose) => (
-              <>
-                <ModalHeader className="flex flex-col gap-1">
-                  <p className="text-xl">Buy Ticket</p>
-                  <p className="text-sm text-[#98989D] font-light">
-                    #1144 | End: Feb 15, 2024, 7:00 PM
-                  </p>
-                </ModalHeader>
-                <ModalBody>
-                  <NumberListInput />
-                  <Button
-                    className="w-full bg-[#1E1E1E] text-white mb-6"
-                    onPress={confirmTickets}
-                  >
-                    Buy
-                  </Button>
-                </ModalBody>
-              </>
-            )}
-          </ModalContent>
-        )}
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                <p className="text-xl">Buy Ticket</p>
+                <p className="text-sm text-[#98989D] font-light">
+                  #1144 | End: Feb 15, 2024, 7:00 PM
+                </p>
+              </ModalHeader>
+              <ModalBody>
+                <NumberListInput onArrayChange={handleInputChange} />
+                <ModalConfirm
+                  Numbers={enteredNumbers}
+                  onCloseAddNumber={onCloseAddNumber}
+                />
+              </ModalBody>
+            </>
+          )}
+        </ModalContent>
       </Modal>
     </>
   );

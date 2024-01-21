@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Image,
-} from "@nextui-org/react";
+import { Button, Card, CardHeader, Image } from "@nextui-org/react";
 import { ConnectKitButton } from "connectkit";
 
 const Borrow = () => {
@@ -35,28 +28,13 @@ const Borrow = () => {
           {({ isConnected }) => {
             return (
               <div>
-                {isConnected ? (
-                  <>
-                    {" "}
-                    <Button
-                      className="bg-black text-white w-[199px] h-[56px] shadow"
-                      size="lg"
-                    >
-                      Borrow now !
-                    </Button>
-                  </>
-                ) : (
-                  <>
-                    {" "}
-                    <Button
-                      isDisabled
-                      className="bg-black text-white w-[199px] h-[56px] shadow"
-                      size="lg"
-                    >
-                      Borrow now !
-                    </Button>
-                  </>
-                )}
+                  <Button
+                    isDisabled={!isConnected}
+                    className="bg-black text-white w-[199px] h-[56px] shadow"
+                    size="lg"
+                  >
+                    Borrow now !
+                  </Button>
               </div>
             );
           }}
