@@ -12,10 +12,8 @@ import {
 import { Quicksand } from "next/font/google";
 import React, { useState } from "react";
 import ModalTicket2 from "./ModalTicket2";
-import { useHistory, useTicketAll } from "@/hook/history.hook";
-import { useContractRead } from "wagmi";
-import { address } from "@/constants/address/contractAddress";
-import { abi } from "@/constants/abi/abi";
+import { useTicketAll } from "@/hook/history.hook";
+
 type ModalTicket1Types = {
   round: string;
   isOpen: boolean;
