@@ -16,6 +16,7 @@ import ModalTicket3 from "./ModalTicket3";
 type ModalTicket2Types = {
   ticket: string;
   date: string;
+  totalTicket: string;
   isOpen: boolean;
   onOpenChange: () => void;
   onClose: () => void;
@@ -28,6 +29,7 @@ const result = [
 const ModalTicket2 = ({
   ticket,
   date,
+  totalTicket,
   isOpen,
   onOpenChange,
   onClose,
@@ -101,7 +103,9 @@ const ModalTicket2 = ({
                   </h6>
                   <h6 className=" text-primary-foreground text-sm font-normal">
                     Total numbers :{" "}
-                    <span className="text-primary ml-1 font-semibold">2</span>
+                    <span className="text-primary ml-1 font-semibold">
+                      {totalTicket}
+                    </span>
                   </h6>
                   <h6 className=" text-primary-foreground text-sm font-normal">
                     Price :{" "}
