@@ -13,7 +13,7 @@ const NumberListInput = ({}: Props) => {
     setOtp("");
     setEnteredNumbers([]);
   };
-  const [enteredNumbers, setEnteredNumbers] = useState<any>([]);
+  const [enteredNumbers, setEnteredNumbers] = useState<Array<string>>([]);
 
   const clearNumber = (index: number) => {
     const updatedNumber = [...enteredNumbers, otp];
@@ -29,21 +29,29 @@ const NumberListInput = ({}: Props) => {
     }
   };
 
-  const generateRandom = (index: number) => {
+  const generateRandom = () => {
     const update = `${generateRandomSixDigitNumber()}`;
-    // update.split(index);
     return update;
   };
 
-  const splitDigits = (number: any) => {
-    return number.toString().split('').map(Number);
+  const splitDigits = (number: string) => {
+    const splited = number.toString().split("").map(Number);
+    return splited;
   };
 
   const handleRadom = () => {
-    const newRandomNumbers = enteredNumbers.map(
-      (item: any, index: any) => (item = generateRandom(index))
-    );
-    setEnteredNumbers([newRandomNumbers]);
+    const gen = generateRandom();
+    if (enteredNumbers.length == 0) {
+      setEnteredNumbers([generateRandom()]);
+    } else {
+      const newRandomNumbers: Array<string> = enteredNumbers.map(() => {
+        return generateRandom();
+      });
+      setEnteredNumbers(newRandomNumbers);
+    }
+
+    // setEnteredNumbers([newRandomNumbers]);
+    // setEnteredNumbers(["012356", "945665"]);
 
     // const update =  generateRandomSixDigitNumber();
     // console.log(update)
